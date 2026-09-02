@@ -2,7 +2,7 @@
 // Lógica de EcoPouch: catálogo, carrito persistente, calculadora EcoCoins
 // y generación del mensaje de pedido por WhatsApp.
 
-const WHATSAPP_NUMERO = "573215656425";
+const WHATSAPP_NUMERO = "573202284029";
 const CLAVE_CARRITO = "ecopouch_carrito";
 
 // TODO: reemplazar por la cifra real de bolsas plásticas evitadas
