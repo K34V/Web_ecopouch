@@ -45,11 +45,18 @@ function renderCatalogo() {
   const contenedor = document.getElementById("carruselProductos");
   contenedor.innerHTML = ECOPOUCH_PRODUCTS.map((producto) => {
     const tieneOferta = producto.salePrice != null;
+    const descuento = tieneOferta
+      ? Math.round(100 - (producto.salePrice / producto.price) * 100)
+      : 0;
+
     return `
       <article class="tarjeta-producto" role="listitem">
-        <div class="tarjeta-producto__arte" style="background:linear-gradient(150deg, ${producto.art.from}, ${producto.art.to});">
-          ${producto.tag ? `<span class="tarjeta-producto__etiqueta">${producto.tag}</span>` : ""}
-          ${crearArteSVG(producto)}
+        <div class="tarjeta-producto__media">
+          <div class="tarjeta-producto__arte" style="background:linear-gradient(150deg, ${producto.art.from}, ${producto.art.to});">
+            ${crearArteSVG(producto)}
+          </div>
+          ${producto.badge ? `<span class="tarjeta-producto__badge" style="background:${producto.badge === "NUEVO" ? "var(--naranja-vibrante)" : "var(--verde-lima)"}; color:${producto.badge === "NUEVO" ? "var(--verde-bosque)" : "var(--verde-bosque)"};">${producto.badge}</span>` : ""}
+          ${tieneOferta ? `<span class="tarjeta-producto__badge tarjeta-producto__badge--oferta">OFERTA -${descuento}%</span>` : ""}
         </div>
         <h3 class="tarjeta-producto__nombre">${producto.name}</h3>
         <p class="tarjeta-producto__tagline">${producto.tagline}</p>
@@ -129,16 +136,20 @@ function renderCarrito() {
       return `
         <div class="item-carrito">
           <div class="item-carrito__arte" style="background:linear-gradient(150deg, ${producto.art.from}, ${producto.art.to});"></div>
-          <div>
+          <div class="item-carrito__texto">
             <p class="item-carrito__nombre">${producto.name}</p>
             <p class="item-carrito__precio">${formatoCOP(precio)}</p>
-            <div class="item-carrito__controles">
-              <button aria-label="Restar unidad" data-accion="restar" data-id="${id}">−</button>
+            <div class="item-carrito__cantidad">
+              <button aria-label="Restar unidad de ${producto.name}" data-accion="restar" data-id="${id}">−</button>
               <span>${carrito[id]}</span>
-              <button aria-label="Sumar unidad" data-accion="sumar" data-id="${id}">+</button>
+              <button aria-label="Sumar unidad de ${producto.name}" data-accion="sumar" data-id="${id}">+</button>
             </div>
           </div>
-          <button class="item-carrito__quitar" data-accion="quitar" data-id="${id}">Quitar</button>
+          <button class="item-carrito__quitar" aria-label="Eliminar ${producto.name} del carrito" data-accion="quitar" data-id="${id}">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 7h16"/><path d="M9 7V4h6v3"/><path d="M6 7l1 13a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2l1-13"/><path d="M10 11v6"/><path d="M14 11v6"/>
+            </svg>
+          </button>
         </div>`;
     }).join("");
 

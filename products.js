@@ -2,6 +2,7 @@
 // Catálogo de EcoPouch. Cada bolsa es intervenida a mano en Cali, así que
 // no hay dos piezas idénticas: las fotos reales deben reemplazar el campo
 // "art" (hoy usa una paleta ilustrada como marcador visual de cada pieza).
+// "badge" es opcional y se muestra como etiqueta flotante sobre la imagen.
 
 const ECOPOUCH_PRODUCTS = [
   {
@@ -11,7 +12,7 @@ const ECOPOUCH_PRODUCTS = [
     price: 27000,
     salePrice: 13490,
     art: { from: "#465E21", to: "#96C040" },
-    tag: "Más vendida"
+    badge: "MÁS VENDIDO"
   },
   {
     id: "verano-sin-ti",
@@ -20,7 +21,7 @@ const ECOPOUCH_PRODUCTS = [
     price: 16990,
     salePrice: 13500,
     art: { from: "#FE9005", to: "#E39F35" },
-    tag: null
+    badge: null
   },
   {
     id: "bag-girlbom",
@@ -29,7 +30,7 @@ const ECOPOUCH_PRODUCTS = [
     price: 16990,
     salePrice: 13200,
     art: { from: "#F04E29", to: "#FE9005" },
-    tag: null
+    badge: null
   },
   {
     id: "brand-eco",
@@ -38,7 +39,7 @@ const ECOPOUCH_PRODUCTS = [
     price: 20990,
     salePrice: 14500,
     art: { from: "#195125", to: "#465E21" },
-    tag: "Edición firma"
+    badge: "EDICIÓN FIRMA"
   },
   {
     id: "ssj-bag",
@@ -47,7 +48,7 @@ const ECOPOUCH_PRODUCTS = [
     price: 13900,
     salePrice: null,
     art: { from: "#96C040", to: "#E39F35" },
-    tag: null
+    badge: null
   },
   {
     id: "ziro-bag",
@@ -56,6 +57,6 @@ const ECOPOUCH_PRODUCTS = [
     price: 22900,
     salePrice: null,
     art: { from: "#E39F35", to: "#F04E29" },
-    tag: "Nueva"
+    badge: "NUEVO"
   }
 ];
